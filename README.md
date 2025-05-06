@@ -10,7 +10,7 @@ A web application where K-pop lovers can guess songs based on audio clips.
 - API integration for song data
 
 ## Folder Structure
-/project-root
+```/project-root
 │ 
 ├── /docs 
 │   ├── project-proposal.md 
@@ -54,7 +54,7 @@ A web application where K-pop lovers can guess songs based on audio clips.
 │       ├── dockerfile 
 │       └── deployment-scripts/ 
 │   
-└── README.md
+└── README.md```
 
 ## Getting Started
 1. Clone the repository.
