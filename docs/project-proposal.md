@@ -104,18 +104,13 @@ Competitive mode is designed for users who want to challenge others and engage i
 
 #### **1. Local Mode**
 - Users play with friends or peers in a shared environment.
-- Similar to Kahoot-style gameplay, where players participate in a session together.
-- Ideal for classrooms, group events, or social gatherings.
 
 #### **2. Online Mode**
 - Players are matched with others who wish to play the same quiz.
 - The system pairs users into live sessions.
-- Encourages interaction and competitive spirit among global users.
 
 #### **3. Random Mode**
 - Users who opt for this mode will be assigned to a quiz that needs additional participants.
-- Helps ensure that multiplayer quizzes are always active and not waiting indefinitely for players.
-- Creates an element of surprise and variation.
 
 
 ## User Flow
