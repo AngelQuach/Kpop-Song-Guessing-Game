@@ -53,6 +53,7 @@ This project aims to create a web application where K-pop lovers can guess songs
 
 ### Overview
 This flow outlines the quiz creation process for this song-guessing game, where users craft quizzes by either letting players guess a song and singer from a music clip or by interpreting lyrics. 
+
 The process is designed as a user-friendly, multi-step wizard that includes autosave and intuitive feedback, ensuring creators can seamlessly build engaging quizzes.
 
 ### Step 1: Accessing the Creation Tool
@@ -127,7 +128,9 @@ For each manual question entry:
 - A workshop where users can share their quizzes is implemented and tested.
 
 ### Finalization
-Once all steps are complete and the user reviews the final configuration, they can publish the quiz for the selected access level. The system then makes the quiz available based on the chosen public or private setting.
+Once all steps are complete and the user reviews the final configuration, they can publish the quiz for the selected access level. 
+
+The system then makes the quiz available based on the chosen public or private setting.
 
  
 ## Technology Stack
