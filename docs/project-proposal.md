@@ -52,7 +52,8 @@ This project aims to create a web application where K-pop lovers can guess songs
 ## Quiz Creation Flow
 
 ### Overview
-This flow outlines the quiz creation process for this song-guessing game, where users craft quizzes by either letting players guess a song and singer from a music clip or by interpreting lyrics. The process is designed as a user-friendly, multi-step wizard that includes autosave and intuitive feedback, ensuring creators can seamlessly build engaging quizzes.
+This flow outlines the quiz creation process for this song-guessing game, where users craft quizzes by either letting players guess a song and singer from a music clip or by interpreting lyrics. 
+The process is designed as a user-friendly, multi-step wizard that includes autosave and intuitive feedback, ensuring creators can seamlessly build engaging quizzes.
 
 ### Step 1: Accessing the Creation Tool
 - **Entry Point:**
@@ -62,14 +63,14 @@ This flow outlines the quiz creation process for this song-guessing game, where 
 
 ### Step 2: Selecting Play Mode & Difficulty Level
 - **Play Modes:**
-      - **Music Clip Mode:** Players listen to a clip and guess the singer and song.
-      - **Lyrics Mode:** Players read a lyric line (with optional visual snippet selection) and guess the song.
+    - **Music Clip Mode:** Players listen to a clip and guess the singer and song.
+    - **Lyrics Mode:** Players read a lyric line (with optional visual snippet selection) and guess the song.
 - **Difficulty Levels:**
   Users choose from:
-      - **Easy:** 5-7 questions.
-      - **Medium:** 8-10 questions.
-      - **Hard:** 11-15 questions.
-      - **Underworld:** 16+ questions *(consider imposing a maximum question count for balance)*.
+    - **Easy:** 5-7 questions.
+    - **Medium:** 8-10 questions.
+    - **Hard:** 11-15 questions.
+    - **Underworld:** 16+ questions *(consider imposing a maximum question count for balance)*.
 - **UI Guidance:**
   A progress bar or step indicator displays the current stage and the required number of questions for the selected level.
 
@@ -81,6 +82,7 @@ When adding questions, users are presented with a modal window offering three in
   Paste questions and links directly into a text field.
 - **Manual Entry:**
   Manually add questions with dynamic prompts to search for songs and videos.
+
 **Pre-condition:**
   The system maintains a database of available songs, videos, and lyrics for smart suggestions.
 
@@ -90,6 +92,7 @@ For each manual question entry:
     - When a song is selected, if its snippet isn't automatically defined, the interface will display scrollable lyrics.
     - **Intelligent Suggestion:**
       The system may suggest clipping points based on the song structure, with markers to indicate ideal snippet lengths.
+
 **Pre-condition:**
 - The database must store a comprehensive list of songs and associated videos.
 - The lyrics for each song are stored for selection, and their lengths are tracked to clipping recommendations.
