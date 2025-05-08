@@ -48,6 +48,14 @@ This project aims to create a web application where K-pop lovers can guess songs
     - Titles
     - Rename options
 
+### Creative Workshop System
+- Users can publish the quizzes they created.
+- Users can save/play quizzes created by other users.
+
+### User Networking System
+- Users have a customizable profile where they can change names, profiles, description, (TBD) and whether to show the most recent quiz they participated in.
+- Users can invite others to the platform.
+- Users can follow/befriend other users.
 
 ## Quiz Creation Flow
 
@@ -151,3 +159,16 @@ The system then makes the quiz available based on the chosen public or private s
 - Implement an authentication & authorization system.
 - Build leaderboard mechanics.
 - Integrate YouTube API for video clips.
+
+## Additional Enhancement
+**Quiz Creation Flow:**
+- **Step-by-Step Wizard:**  
+  A multi-step wizard guides the user, with each stage clearly indicated by a progress bar.
+- **Real-Time Feedback:**  
+  Dynamic messaging informs creators if their input meets criteria (e.g., acceptable question numbers, proper media clipping).
+- **Autosave & Drafting:**  
+  The quiz creation process automatically saves drafts, letting users pause and resume seamlessly.
+- **Preview Mode:**  
+  Before publishing, provide a “preview” mode that allows creators to experience the quiz as a player would.  
+- **Error Handling:**  
+  Clear error messages and prompts are displayed when required inputs or conditions are missing.
