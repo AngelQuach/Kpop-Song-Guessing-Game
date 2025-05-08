@@ -3,6 +3,7 @@
 ## Overview
 This project aims to create a web application where K-pop lovers can guess songs based on audio clips.
 
+------
 
 ## Scope & Plan
 ### MVP
@@ -26,6 +27,68 @@ This project aims to create a web application where K-pop lovers can guess songs
 - Singers: 4th Generation Girl Groups/Female Soloists.
 - Language: English.
 
+------
+
+## Platform Features
+### Redemption System
+#### Overview
+The **Redemption System** allows users to exchange earned points for various customization and recognition rewards. 
+
+This system enhances engagement by giving players incentives to participate in quizzes, compete, and maintain their standing on the leaderboard.
+
+#### Point-Based Rewards
+- **Decorations:**
+    - Users can unlock custom profile decorations, such as badges, borders, and themed backgrounds.
+    - Seasonal and limited-time decoration sets may be introduced based on events.
+- **Titles & Achievements:**
+    - Players earn titles based on quiz performance, leaderboard status, and special accomplishments.
+    - Titles can be displayed alongside usernames in profiles, leaderboards, and game sessions.
+- **Rename Options:**
+    - Limited-edition name styling (such as animated effects or color gradients) may be available through high-tier rewards.
+
+#### Progression System
+- **Tiered Rewards System:**
+    - Rewards are categorized into standard, rare, and legendary tiers based on difficulty and accumulated points.
+- **Milestone Bonuses:**
+    - Players who reach certain point thresholds unlock milestone rewards, encouraging continued engagement.
+- **Limited-Time Redemption Events:**
+    - Special redemption items may be available for a limited time, creating excitement and exclusivity.
+
+---
+
+### Creative Workshop System
+#### Overview
+The **Creative Workshop** system enables users to explore, interact with, and engage with quizzes created by others. 
+
+It fosters a collaborative and innovative environment where creators can showcase their work while players can discover new challenges.
+
+#### Features
+- **Quiz Gallery & Search Filters:**
+  Users can browse quizzes through categories such as *trending*, *most played*, *newly created*, or *recommended based on play history*.
+- **Quiz Publishing:**
+  Users can publish the quizzes they create, making them available to others.
+- **Bookmarking & Saving for Later:**
+  Users can save quizzes they want to revisit.
+- **Featured & Creator Spotlights:**
+  Outstanding quizzes and top creators can be showcased to boost visibility and engagement.
+
+---
+
+### User Networking System
+#### Overview
+The **User Networking System** enhances social engagement by allowing users to customize their profiles, connect with others, and invite new users to join the platform.
+
+#### Features
+- **User Profiles & Customization:**
+  Users can personalize their profiles with display names, profile pictures, bio descriptions, and optionally show their most recent quiz participation.
+- **Follow & Social Interaction:**
+  Users can follow other creators and receive updates on new quizzes or leaderboard achievements.
+- **Direct Invitations & Group Formation:**
+  Users can invite others to join the platform, fostering organic growth.
+- **Achievement Badges & Social Recognition:**
+  Players can earn badges based on quiz participation, rankings, and creative contributions.
+
+------
 
 ## User Flow
 ### Without Logging In
@@ -42,20 +105,7 @@ This project aims to create a web application where K-pop lovers can guess songs
     - Monthly leaderboard for top performers.
     - Earn titles, decorations, and additional pts.
 
-### Redemption System
-- Users can redeem earned pts for:
-    - Decorations
-    - Titles
-    - Rename options
-
-### Creative Workshop System
-- Users can publish the quizzes they created.
-- Users can save/play quizzes created by other users.
-
-### User Networking System
-- Users have a customizable profile where they can change names, profiles, description, (TBD) and whether to show the most recent quiz they participated in.
-- Users can invite others to the platform.
-- Users can follow/befriend other users.
+------
 
 ## Quiz Creation Flow
 
@@ -140,6 +190,7 @@ Once all steps are complete and the user reviews the final configuration, they c
 
 The system then makes the quiz available based on the chosen public or private setting.
 
+------
  
 ## Technology Stack
 - **UI Design:** Figma
@@ -148,17 +199,21 @@ The system then makes the quiz available based on the chosen public or private s
 - **Database:** Firebase
 - **APIs:** YouTube API (for embedding relevant content)
 
+------
 
 ## Development Tools
 - **Version Control:** Git repository on GitHub.
 - **Development Environment:** IDE setup with TypeScript, NextJS, and Tailwind.
 
+------
 
 ## Next Steps
 - (DONE) Define quiz creation flow.
 - Implement an authentication & authorization system.
 - Build leaderboard mechanics.
 - Integrate YouTube API for video clips.
+
+------
 
 ## Additional Enhancement
 **Quiz Creation Flow:**
