@@ -3,7 +3,6 @@
 ## Overview
 This project aims to create a web application where K-pop lovers can guess songs based on audio clips.
 
-------
 
 ## Scope & Plan
 ### MVP
@@ -27,7 +26,6 @@ This project aims to create a web application where K-pop lovers can guess songs
 - Singers: 4th Generation Girl Groups/Female Soloists.
 - Language: English.
 
-------
 
 ## Platform Features
 ### Redemption System
@@ -88,7 +86,6 @@ The **User Networking System** enhances social engagement by allowing users to c
 - **Achievement Badges & Social Recognition:**
   Players can earn badges based on quiz participation, rankings, and creative contributions.
 
-------
 
 ## User Flow
 ### Without Logging In
@@ -105,7 +102,6 @@ The **User Networking System** enhances social engagement by allowing users to c
     - Monthly leaderboard for top performers.
     - Earn titles, decorations, and additional pts.
 
-------
 
 ## Quiz Creation Flow
 
@@ -190,7 +186,6 @@ Once all steps are complete and the user reviews the final configuration, they c
 
 The system then makes the quiz available based on the chosen public or private setting.
 
-------
  
 ## Technology Stack
 - **UI Design:** Figma
@@ -199,13 +194,11 @@ The system then makes the quiz available based on the chosen public or private s
 - **Database:** Firebase
 - **APIs:** YouTube API (for embedding relevant content)
 
-------
 
 ## Development Tools
 - **Version Control:** Git repository on GitHub.
 - **Development Environment:** IDE setup with TypeScript, NextJS, and Tailwind.
 
-------
 
 ## Next Steps
 - (DONE) Define quiz creation flow.
@@ -213,7 +206,6 @@ The system then makes the quiz available based on the chosen public or private s
 - Build leaderboard mechanics.
 - Integrate YouTube API for video clips.
 
-------
 
 ## Additional Enhancement
 **Quiz Creation Flow:**
