@@ -87,6 +87,37 @@ The **User Networking System** enhances social engagement by allowing users to c
   Players can earn badges based on quiz participation, rankings, and creative contributions.
 
 
+## Play Modes & Quiz Categorization
+### Overview
+To enhance user experience and provide diverse engagement opportunities, quizzes will be categorized into **Solo** and **Competitive** modes. 
+
+Players can choose how they want to interact with quizzes, whether individually or with others in real-time.
+
+### Solo Mode
+- **Challenge Yourself:**  
+  Players attempt quizzes on their own, tracking their progress and improving over time.
+- **Solo Leaderboard:**  
+  Rankings will be separate from competitive play, allowing users to focus on personal achievements.
+
+### Competitive Mode (Multiplayer)
+Competitive mode is designed for users who want to challenge others and engage in real-time quiz battles. It has three subcategories:
+
+#### **1. Local Mode**
+- Users play with friends or peers in a shared environment.
+- Similar to Kahoot-style gameplay, where players participate in a session together.
+- Ideal for classrooms, group events, or social gatherings.
+
+#### **2. Online Mode**
+- Players are matched with others who wish to play the same quiz.
+- The system pairs users into live sessions.
+- Encourages interaction and competitive spirit among global users.
+
+#### **3. Random Mode**
+- Users who opt for this mode will be assigned to a quiz that needs additional participants.
+- Helps ensure that multiplayer quizzes are always active and not waiting indefinitely for players.
+- Creates an element of surprise and variation.
+
+
 ## User Flow
 ### Without Logging In
 - Users can view the front page.
