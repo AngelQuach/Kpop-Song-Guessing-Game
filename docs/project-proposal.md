@@ -1,26 +1,51 @@
 # Project Proposal: KPOP Song Guessing Game
 
 ## Overview
-This project aims to create a web application where K-pop lovers can guess songs based on audio clips.
+This project aims to create a web application where K-pop lovers can guess songs based on song clips.
 
 
 ## Scope & Plan
 ### MVP
-- Play song clips and let users guess.
-- Clip length varies with difficulty level (easy - 5 sec, medium - 3 sec, hard - 2 sec, extreme - 1 sec).
-- Users enter their guesses for the Song Name & Singer.
-- Implement a basic scoring system:
-    - Each game has 10 songs for guessing; each correct song name/singer is 5 pts, totaling 100 pts.
-    - Users get three hints for each singer:
-          - Number of members (-1pt)
-          - Debut year (-1.5pt)
-          - Most famous song (-2pt)
-    - If the user guesses right after all hints are given, they can get 0.5pt.
-    - Users have three chances to guess each song's name/singer.
-    - No pt deducted for wrong guesses.
-    - Bonus pts for correct guesses in one shot.
-    - Implement a record system: TBD
-          - Score record board and Time record board etc.
+#### **Core Gameplay**
+- Players listen to or view a short quiz clip (song, emoji, dance, etc.) and guess the **Song Name & Singer**.
+- Clip length varies by difficulty:
+    - Easy -> 5 sec
+    - Medium -> 3 sec
+    - Hard -> 2 sec
+    - Extreme -> 1 sec
+
+#### **Guessing & Hints**
+- Each game session has 10 quiz rounds.
+- Players get **3 attempts** per round.
+- Hints (optional, cost points unless "Bias Chance" is used):
+    - Number of members -> -1 pt
+    - Debut year -> -1.5 pt
+    - Most famous song -> -2 pt
+- Bias Chance (3 per game): Grants a free hint without deduction.
+- Correct guess after all hints -> 0.5 pt
+- **No penalty** for wrong guesses.
+- **Bonus points** awarded for first-try correct guesses.
+
+#### **Scoring System**
+- **Base Score**: Each correct Song Name or Singer = **5 pt** -> max 100 pts per game.
+- **Bonus**: If the Song Name or Singer is guessed **correctly on the first attempt**, that item's 5 pts are **multiplied by a difficulty-based factor**:
+    - Easy -> 1.5x (7.5 pts)
+    - Medium -> 1.7x (8.5 pts)
+    - Hard -> x2 (10 pts)
+    - Extreme -> x3 (15 pts)
+- **Adjusted Score**: Deducted if hints are used (unless Bias Chance is active).
+
+#### **Leaderboards**
+1. Point Record Board
+    - Ranks players by their **highest scores** per category.
+    - Rewards accuracy and efficient use of hints.
+2. Time Record Board
+    - Ranks players who **finish fastest** with a full score.
+    - Encourages speed + knowledge.  
+3. Improvement Record Board
+    - Highlights players who **climb the most ranks** over time.
+    - Encourages consistent play and growth.
+
 
 ### Current Scope
 - Singers: 4th Generation Girl Groups/Female Soloists.
@@ -88,29 +113,33 @@ The **User Networking System** enhances social engagement by allowing users to c
 
 
 ## Play Modes & Quiz Categorization
-### Overview
+### Play Modes Overview
 To enhance user experience and provide diverse engagement opportunities, quizzes will be categorized into **Solo** and **Competitive** modes. 
 
 Players can choose how they want to interact with quizzes, whether individually or with others in real-time.
 
-### Solo Mode
-- **Challenge Yourself:**  
-  Players attempt quizzes on their own, tracking their progress and improving over time.
-- **Solo Leaderboard:**  
-  Rankings will be separate from competitive play, allowing users to focus on personal achievements.
+#### **1. Solo Mode**
+- **Challenge Yourself**: Play quizzes individually, track your progress, and improve over time.
+- **Solo Leaderboard**: Rankings are independent from competitive play, letting users focus on personal achievements.
 
-### Competitive Mode (Multiplayer)
-Competitive mode is designed for users who want to challenge others and engage in real-time quiz battles. It has three subcategories:
+#### **2.Competitive Mode (Multiplayer)**
+For players who want to challenge others in real-time quiz battles. This mode includes:
+- **Local Modes**: Play with friends or peers in the same environment.
+- **Online Mode**: Get matched with players who select the same quiz category, and compete in live sessions.
 
-#### **1. Local Mode**
-- Users play with friends or peers in a shared environment.
+#### **3. Shared Feature**
+Available in both Solo and Competitive modes:
+- **Random Mode**: Players are placed into a random quiz category for a surprise challenge.
 
-#### **2. Online Mode**
-- Players are matched with others who wish to play the same quiz.
-- The system pairs users into live sessions.
+### Quiz Categories Overview
+#### **1. Instrumental Quiz**
+Listen to a 5-second clip of the instrumental version of a song and guess the singer and song title.
 
-#### **3. Random Mode**
-- Users who opt for this mode will be assigned to a quiz that needs additional participants.
+#### **2. Emoji Quiz**
+Interpret a sequence of emojis inspired by a song, then guess the singer and song title.
+
+#### **3. Dance Move Quiz**
+Watch a short dance clip from a song and guess the singer and song title.
 
 
 ## User Flow
