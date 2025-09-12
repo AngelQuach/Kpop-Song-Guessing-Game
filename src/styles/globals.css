@@ -1,4 +1,3 @@
-@import "tailwindcss/preflight";
 @import "tailwindcss";
 
 :root {
@@ -11,6 +10,34 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Custom Color palette */
+  --color-primary-50:  #B8F2D5;
+  --color-primary-75:  #A9DFC4;
+  --color-primary-100: #8DCAAD;
+  --color-primary-150: #82BA9F;
+  --color-primary-200: #70A18A;
+  --color-primary-250: #67947F;
+  --color-primary-300: #547A68;
+  --color-primary-350: #4D705F;
+  --color-primary-400: #395548;
+  --color-primary-450: #344E42;
+  --color-primary-500: #21332A;
+  --color-primary-600: #0A130F;
+  --color-primary-700: #050A08;
+
+  --color-neutral-0:   #FFFFFF;
+  --color-neutral-50:  #FDFDFC;
+  --color-neutral-75: #FAFAF8;
+  --color-neutral-100: #D5D5D1;
+  --color-neutral-200: #ADADAA;
+  --color-neutral-300: #878785;
+  --color-neutral-400: #646462;
+  --color-neutral-500: #424240;
+  --color-neutral-600: #232322;
+  --color-neutral-700: #0B0B0F;
+
+  --color-tertiary: #F0F0F0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,5 +50,4 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
