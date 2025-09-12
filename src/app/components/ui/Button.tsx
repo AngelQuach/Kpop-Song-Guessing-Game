@@ -5,7 +5,8 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "hollow";
 }
 
-const base = "font-semibold px-[20px] py-2 rounded-md text-center font-medium";
+const base =
+  "font-semibold px-[20px] py-2 rounded-md text-center font-medium transition-colors duration-300";
 type Variant = "primary" | "secondary" | "hollow";
 
 const variants: Record<Variant, string> = {

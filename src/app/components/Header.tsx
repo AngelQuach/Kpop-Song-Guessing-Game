@@ -1,48 +1,58 @@
 "use client";
 import React from "react";
 import { Button } from "./ui/Button";
+import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
 
-interface HeaderProps {
-  activeTab: string;
-  onTabChange: (tab: string) => void;
-  currentState: string | null;
-  setCurrentState: (state: "Registering" | "LoggingIn" | null) => void;
-}
+export const tabs = [
+  { label: "Home", href: "/" },
+  { label: "Galley", href: "/gallery" },
+  { label: "Friends", href: "/friends" },
+  { label: "Contact", href: "/contact" },
+];
 
-export function Header({
-  activeTab,
-  onTabChange,
-  currentState,
-  setCurrentState,
-}: HeaderProps) {
-  // Arr of tabs in header
-  const tabs: string[] = ["Home", "Galley", "Friends", "Contact"];
+export function Header() {
+  const router = useRouter();
+  const pathname = usePathname();
 
   return (
     <div className="w-full p-4 bg-white shadow-md flex items-center gap-4">
-      <img
-        src="/branding/websiteLogo_default.svg"
-        alt="IdolEar logo"
-        width={120}
-        height={30}
-      />
+      <Link href="/">
+        <img
+          src="/branding/websiteLogo_default.svg"
+          alt="IdolEar logo"
+          width={120}
+        />
+      </Link>
       <div className="w-full flex justify-end items-center gap-4">
-        <div className="flex-1 flex items-center gap-2 justify-end">
+        <nav className="flex-1 flex items-center gap-2 justify-end">
           {tabs.map((tab) => (
-            <div
-              key={tab}
-              className={`text-right text-md text-primary-400 hover:bg-tertiary px-2 py-1 rounded-md ${
-                activeTab === tab ? "bg-tertiary font-bold" : "font-semibold"
-              }`}
-              onClick={() => onTabChange(tab)}
+            <Link
+              key={tab.label}
+              href={tab.href}
+              className={`text-right text-md text-primary-400 px-2 py-1 rounded-md transition-colors duration-300
+                ${
+                  pathname === tab.href
+                    ? "bg-tertiary font-bold"
+                    : "font-semibold"
+                }
+                hover:bg-tertiary `}
             >
-              <label>{tab}</label>
-            </div>
+              <label>{tab.label}</label>
+            </Link>
           ))}
-        </div>
+        </nav>
         <div className="flex gap-4 items-center justify-end">
-          <Button variant="secondary">Sign in</Button>
-          <Button variant="primary">Register</Button>
+          {pathname !== "/signIn" && (
+            <Button variant="secondary" onClick={() => router.push("/signIn")}>
+              Sign in
+            </Button>
+          )}
+          {pathname !== "/register" && (
+            <Button variant="primary" onClick={() => router.push("/register")}>
+              Register
+            </Button>
+          )}
         </div>
       </div>
     </div>
