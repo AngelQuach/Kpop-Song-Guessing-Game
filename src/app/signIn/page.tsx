@@ -25,7 +25,7 @@ export default function HomePage() {
     setHasError(false);
   };
 
-  function handleSignIn() {
+  async function handleSignIn() {
     // If either field is empty
     if (credential.length === 0 || pwd.length === 0) {
       setHasError(true);
@@ -34,12 +34,14 @@ export default function HomePage() {
     }
 
     // Search for combination in credentialSet
-    let found: boolean = false;
-    credentialSet.forEach((pair) => {
-      if (pair.credential === credential && pair.pwd === pwd) found = true;
+    const response = await fetch("/api/signIn/verify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: credential, pwd: pwd }),
     });
+    const data = await response.json();
 
-    if (found) {
+    if (data.ok) {
       // Redirect to homepage
       router.push("/");
     } else {

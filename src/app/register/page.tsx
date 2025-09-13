@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import { InputField } from "../components/ui/InputField";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { Button } from "../components/ui/Button";
 import { TextLink } from "../components/ui/TextLink";
 import { ListItem } from "../components/ui/ListItem";
@@ -21,6 +21,7 @@ const pwdConfirmCheckList = "Passwords match";
 
 export default function HomePage() {
   const router = useRouter();
+  const pathName = usePathname();
 
   // form values
   const [form, setForm] = useState({
@@ -91,14 +92,18 @@ export default function HomePage() {
       return;
     }
 
-    // Otherwise, redirect to homepage
+    // Otherwise
+    // Verify user
+    // Keep email so refresh/back keeps it
+    sessionStorage.setItem("pendingEmail", form.email);
+
     setSubmitError("");
-    router.push("/");
+    router.push(pathName + "/verify");
   }
 
   const showPwdChecklist =
-    focused === "pwd" ||
-    focused === "pwdConfirm" ||
+    !focused ||
+    focused != "email" ||
     form.pwd.length > 0 ||
     form.pwdConfirm.length > 0;
 
@@ -114,10 +119,10 @@ export default function HomePage() {
       </div>
 
       {/* Right: Form */}
-      <div className="flex flex-col min-w-[405px] gap-8 text-primary-400 px-10 py-20 items-center justify-center h-full">
+      <div className="w-full flex flex-col min-w-[405px] gap-8 text-primary-400 px-10 py-20 items-center justify-center h-full">
         <label className="text-h1 font-bold">Register</label>
         <form
-          className="flex flex-col gap-8"
+          className="w-full flex flex-col gap-8"
           onSubmit={(e) => {
             e.preventDefault();
             handleRegister();
@@ -130,7 +135,7 @@ export default function HomePage() {
               hasEncription={false}
               fieldValue={form.email}
               setFieldValue={(v: string) => setField("email", v)}
-              hasError={!(emailValid && form.email.length > 0)}
+              hasError={!emailValid && form.email.length > 0}
               resetHasError={() => setSubmitError("")}
               underFieldText={"Please enter a valid email address"}
               onFocus={() => {
