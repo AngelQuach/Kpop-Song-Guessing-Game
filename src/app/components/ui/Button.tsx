@@ -3,6 +3,7 @@ import React from "react";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "hollow";
+  className?: string;
 }
 
 const base =
@@ -20,11 +21,12 @@ const variants: Record<Variant, string> = {
 
 export function Button({
   variant = "primary",
+  className = "",
   type = "button",
   children,
   ...props
 }: ButtonProps) {
-  const classes = [base, variants[variant]].join(" ");
+  const classes = [base, variants[variant], className].join(" ");
 
   return (
     <button type={type} className={classes} {...props}>
