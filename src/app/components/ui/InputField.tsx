@@ -12,6 +12,7 @@ interface InputFieldProps {
   resetHasError?: () => void;
   hasHelperText?: boolean;
   underFieldText?: React.ReactNode;
+  onFocus?: () => void;
 }
 
 export function InputField({
@@ -24,6 +25,7 @@ export function InputField({
   resetHasError,
   hasHelperText = false,
   underFieldText = "",
+  onFocus,
 }: InputFieldProps) {
   const [isPwdShown, setIsPwdShown] = useState<boolean>(false);
 
@@ -46,6 +48,7 @@ export function InputField({
           value={fieldValue}
           onClick={resetHasError}
           onChange={(e) => setFieldValue(e.target.value)}
+          onFocus={onFocus}
           className="pl-1 text-black focus:outline-none selection:bg-primary-150/50"
         />
         {hasEncription &&
@@ -64,7 +67,7 @@ export function InputField({
       <label
         className={`text-caption 
           ${hasError ? "text-error" : "text-secondary-default"} 
-          ${hasHelperText || hasError ? "opacity-100" : "opacity-0"}`}
+          ${!(hasHelperText || hasError) && "hidden"}`}
       >
         {underFieldText}
       </label>

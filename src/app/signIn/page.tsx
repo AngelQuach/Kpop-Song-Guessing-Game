@@ -65,10 +65,10 @@ export default function HomePage() {
             <InputField
               title="Email / Username"
               hasEncription={false}
-              hasError={hasError}
-              resetHasError={resetHasError}
               fieldValue={credential}
               setFieldValue={setCredential}
+              hasError={hasError}
+              resetHasError={resetHasError}
             />
             <InputField
               title="Password"
