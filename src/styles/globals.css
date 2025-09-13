@@ -26,6 +26,8 @@
   --color-primary-600: #0A130F;
   --color-primary-700: #050A08;
 
+  --color-secondary-default: #757575;
+
   --color-neutral-0:   #FFFFFF;
   --color-neutral-50:  #FDFDFC;
   --color-neutral-75: #FAFAF8;
@@ -38,6 +40,10 @@
   --color-neutral-700: #0B0B0F;
 
   --color-tertiary: #F0F0F0;
+  --color-warning: #B45309;
+  --color-error: #B91C1C;
+  --color-success: #15803D;
+  --color-accent: #7C3AED;
 
   /* semantic text sizes */
   --text-h1: 32px;
@@ -45,6 +51,8 @@
   --text-h3: 20px;
   --text-h4: 18px;
   --text-body: 18px;
+  --text-caption: 14px;
+  --text-overline: 12px;
 }
 
 @media (prefers-color-scheme: dark) {
