@@ -13,6 +13,7 @@ interface InputFieldProps {
   hasHelperText?: boolean;
   underFieldText?: React.ReactNode;
   onFocus?: () => void;
+  onBlur?: () => void;
 }
 
 export function InputField({
@@ -26,6 +27,7 @@ export function InputField({
   hasHelperText = false,
   underFieldText = "",
   onFocus,
+  onBlur,
 }: InputFieldProps) {
   const [isPwdShown, setIsPwdShown] = useState<boolean>(false);
 
@@ -49,7 +51,8 @@ export function InputField({
           onClick={resetHasError}
           onChange={(e) => setFieldValue(e.target.value)}
           onFocus={onFocus}
-          className="pl-1 text-black focus:outline-none selection:bg-primary-150/50"
+          onBlur={onBlur}
+          className="pl-1 text-black focus:outline-none"
         />
         {hasEncription &&
           (isPwdShown ? (
