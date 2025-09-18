@@ -6,12 +6,6 @@ import { useRouter } from "next/navigation";
 import { Button } from "../components/ui/Button";
 import { TextLink } from "../components/ui/TextLink";
 
-/** DEBUG purpose */
-const credentialSet = [
-  { credential: "tropicalFruits123", pwd: "12345678" },
-  { credential: "appleU@gmail.com", pwd: "12345678A" },
-];
-
 export default function HomePage() {
   const router = useRouter();
   const [credential, setCredential] = useState<string>("");
@@ -27,7 +21,7 @@ export default function HomePage() {
 
   async function handleSignIn() {
     // If either field is empty
-    if (credential.length === 0 || pwd.length === 0) {
+    if (!credential || credential.length === 0 || !pwd || pwd.length === 0) {
       setHasError(true);
       setErrorMsg("Please ensure all fields are filled");
       return;
@@ -37,13 +31,19 @@ export default function HomePage() {
     const response = await fetch("/api/signIn/verify", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: credential, pwd: pwd }),
+      body: JSON.stringify({ credential, pwd }),
     });
     const data = await response.json();
 
     if (data.ok) {
-      // Redirect to homepage
-      router.push("/");
+      // Redirect to success
+      sessionStorage.setItem("title", "Welcome");
+      sessionStorage.setItem(
+        "body",
+        "Welcome back to <strong>IdolEar</strong>! Ready to test your K-pop knowledge?"
+      );
+      sessionStorage.setItem("buttonText", "Start Exploration");
+      router.push("/welcome");
     } else {
       // Otherwise, if no combination found
       setHasError(true);
@@ -53,6 +53,7 @@ export default function HomePage() {
 
   return (
     <div className="grid grid-cols-2 items-center gap-4 px-10 py-10 md:h-svh">
+      {/* Left: Logo */}
       <div className="flex items-center justify-center h-full">
         <img
           src="/branding/websiteLogo_default.svg"
@@ -60,10 +61,19 @@ export default function HomePage() {
           className="w-full max-w-[90%] h-auto object-contain"
         />
       </div>
-      <div className="flex flex-col min-w-[405px] gap-8 text-primary-400 px-10 py-20 items-center justify-center h-full">
+
+      {/* Right: Form */}
+      <div className="w-full flex flex-col min-w-[405px] gap-8 text-primary-400 px-10 py-20 items-center justify-center h-full">
         <label className="text-h1 font-bold">Sign In</label>
-        <div className="flex flex-col gap-4">
+        <form
+          className="w-full flex flex-col gap-8"
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSignIn();
+          }}
+        >
           <div className="w-full flex flex-col gap-4 justify-items-start">
+            {/* Email / Username */}
             <InputField
               title="Email / Username"
               hasEncription={false}
@@ -72,6 +82,8 @@ export default function HomePage() {
               hasError={hasError}
               resetHasError={resetHasError}
             />
+
+            {/* Password */}
             <InputField
               title="Password"
               hasEncription={true}
@@ -86,6 +98,8 @@ export default function HomePage() {
               underFieldText={errorMsg}
             />
           </div>
+
+          {/* Actions */}
           <div className="w-full flex flex-col gap-2 items-center">
             <Button variant="primary" className="w-full" onClick={handleSignIn}>
               Sign In
@@ -98,7 +112,7 @@ export default function HomePage() {
               }}
             />
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

@@ -7,12 +7,6 @@ import { Button } from "../components/ui/Button";
 import { TextLink } from "../components/ui/TextLink";
 import { ListItem } from "../components/ui/ListItem";
 
-/** DEBUG purpose */
-const credentialSet = [
-  { credential: "tropicalFruits123", pwd: "12345678" },
-  { credential: "appleU@gmail.com", pwd: "12345678A" },
-];
-
 const pwdCheckList = [
   "Password is at least 8 characters long",
   "Contains at least one letter and one number",
@@ -31,7 +25,7 @@ export default function HomePage() {
     checkBoxVal: false,
   });
   const [focused, setFocused] = useState<null | "email" | "pwd" | "pwdConfirm">(
-    null
+    "email"
   );
 
   // Generic onChange
@@ -66,35 +60,50 @@ export default function HomePage() {
   // Overall form validity
   const isComplete = !!form.email && !!form.pwd && !!form.pwdConfirm;
   const isPwdValid = pwdChecklist.every(Boolean) && pwdMatch;
-  const isFormValid = emailValid && isPwdValid && form.checkBoxVal;
 
   const [submitError, setSubmitError] = useState<string>("");
 
   // Check all field values
-  function handleRegister() {
+  async function handleRegister() {
+    // If any field is empty
     if (!isComplete) {
       setSubmitError("Please ensure all fields are filled.");
       return;
     }
-    // If any field is empty
+
+    // If email in correct format
     if (!emailValid) {
       setSubmitError("Please enter a valid email address.");
       return;
     }
-    // Ensure all conditions are met
+
+    // If all pwd conditions are met
     if (!isPwdValid) {
       setSubmitError("Please ensure all password conditions are satisfied.");
       return;
     }
-    // Ensure checkBox is checked
+
+    // If checkBox is checked
     if (!form.checkBoxVal) {
       setSubmitError("Please ensure the checkbox is checked.");
       return;
     }
 
-    // Otherwise
+    // If user has never registered with this email
+    const r = await fetch(`/api/users/registerUser`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: form.email, pwd: form.pwd }),
+    });
+    const data = await r.json();
+    if (!data.ok) {
+      setSubmitError(
+        "Looks like you already have an account with this email. Please login to access your dashboard."
+      );
+      return;
+    }
+
     // Verify user
-    // Keep email so refresh/back keeps it
     sessionStorage.setItem("pendingEmail", form.email);
 
     setSubmitError("");
@@ -123,9 +132,9 @@ export default function HomePage() {
         <label className="text-h1 font-bold">Register</label>
         <form
           className="w-full flex flex-col gap-8"
-          onSubmit={(e) => {
+          onSubmit={async (e) => {
             e.preventDefault();
-            handleRegister();
+            await handleRegister();
           }}
         >
           <div className="w-full flex flex-col gap-4 justify-items-start">

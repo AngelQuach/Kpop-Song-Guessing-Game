@@ -1,25 +1,38 @@
 import { NextResponse } from "next/server";
+import { db } from "../../../../lib/firebase-admin";
+import bcrypt from "bcrypt";
 
-const credentialSet = [
-  { credential: "tropicalFruits123", pwd: "12345678" },
-  { credential: "appleU@gmail.com", pwd: "12345678A" },
-];
+export async function POST(req: Response) {
+    const { credential, pwd } = await req.json();
 
-export async function POST(req: Request) {
-  try {
-    const { email, pwd } = await req.json();
-    if (typeof email !== "string" || typeof pwd !== "string") {
-      return NextResponse.json({ error: "Invalid payload", reason: `email:${email} pwd:${pwd}` }, { status: 400 });
+    try {
+        if (!credential || typeof credential !== "string" || !pwd || typeof pwd !== "string")
+          return NextResponse.json({ error: `Invalid credential/pwd: ${credential}, ${pwd}` }, { status: 400 });
+        
+        // Find if a matching email / username exists
+        let snapshot = await db.collection("users").where("email", "==", credential).get();
+        if (snapshot.empty) {
+          snapshot = await db.collection("users").where("username", "==", credential).get();
+          
+          // If neither exists, return early
+          if (snapshot.empty) return NextResponse.json({ ok: false, reason: "User not found" }, { status: 404 });
+        }
+
+        const userDoc = snapshot.docs[0];
+        const userData = userDoc.data();
+
+        // const hashedPwd = await bcrypt.hash(pwd, 10);
+        // const pwdMatch = await bcrypt.compare(hashedPwd, userData.hashedPwd);
+        const pwdMatch = pwd === userData.pwd;
+
+        // Compare password
+        if (!pwdMatch) {
+          return NextResponse.json({ ok: false, reason: "Incorrect password" }, { status: 401 });
+        }
+
+        return NextResponse.json({ ok: true });
+    } catch (err) {
+        console.error("Login check failed:", err);
+        return NextResponse.json({ error: "Login check failed" }, { status: 500 });
     }
-
-    // Get the matching code
-    const targetUser = credentialSet.find((user: { credential: string, pwd: string }) => user.credential === email);
-    if (!targetUser) return NextResponse.json({ ok: false, reason: "credential_not_found" }, { status: 400 });
-    if (targetUser.pwd != pwd) return NextResponse.json({ ok: false, reason: "incorrect_pwd" }, { status: 400 });
-
-    return NextResponse.json({ ok: true });
-  } catch (err) {
-    console.error(err);
-    return NextResponse.json({ error: "Server error" }, { status: 500 });
-  }
 }

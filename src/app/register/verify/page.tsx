@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { InputField } from "../../components/ui/InputField";
 import { useRouter } from "next/navigation";
 import { Button } from "../../components/ui/Button";
@@ -13,33 +13,37 @@ export default function VerifyPage() {
   const [email, setEmail] = useState<string>("");
   const [verifyCode, setVerifyCode] = useState<string>("");
   const [submitError, setSubmitError] = useState<string>("");
+  const hasRunRef = useRef(false);
 
   // Get the stored email
   useEffect(() => {
-    const pendingEmail = sessionStorage.getItem("pendingEmail") ?? "";
-    setEmail(pendingEmail);
-  }, []);
-  // Send a code for any new email
-  useEffect(() => {
-    if (!email) return;
+    if (hasRunRef.current) return;
+    hasRunRef.current = true;
 
-    // Send a verification email
-    (async () => {
-      try {
-        await handleResendCode();
-      } catch (e) {
-        console.error(e);
-      }
-    })();
-  }, [email]);
+    const pendingEmail = sessionStorage.getItem("pendingEmail") ?? "";
+
+    if (pendingEmail.length > 0) {
+      setEmail(pendingEmail);
+
+      // Send a verification email
+      (async () => {
+        try {
+          await handleResendCode(pendingEmail);
+        } catch (e) {
+          console.error(e);
+        }
+      })();
+    }
+  }, []);
 
   // Check Verification Code
   async function handleVerify() {
     // Check if code is entered
     if (verifyCode.length < 6) {
-      setSubmitError("Incorrect verification code");
+      setSubmitError("Incorrect verification code. Please try again.");
       return;
     }
+
     // Check if code is the same
     const response = await fetch("/api/register/verify", {
       method: "POST",
@@ -48,21 +52,28 @@ export default function VerifyPage() {
     });
     const data = await response.json();
     if (!data.ok) {
-      setSubmitError("Incorrect verification code");
+      setSubmitError("Incorrect verification code. Please try again.");
       console.error(data.reason);
     } else {
-      // Otherwise, redirect to homepage
+      // If match, redirect to success page
       setSubmitError("");
-      router.push("/register/success");
+
+      sessionStorage.setItem("title", "Successful Registration");
+      sessionStorage.setItem(
+        "body",
+        "Welcome to <strong>IdolEar</strong>! Ready to test your K-pop knowledge?"
+      );
+      sessionStorage.setItem("buttonText", "Start Exploration");
+      router.push("/welcome");
     }
   }
 
-  async function handleResendCode() {
+  async function handleResendCode(emailToSend: string) {
     // Send random code to email
     await fetch("/api/register/resend", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({ email: emailToSend }),
     });
   }
 
@@ -96,7 +107,7 @@ export default function VerifyPage() {
                   fieldVal="Resend Code"
                   onClick={async () => {
                     setSubmitError("");
-                    await handleResendCode();
+                    await handleResendCode(email);
                   }}
                 />
               </div>
